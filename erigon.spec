@@ -6,9 +6,9 @@
 # may be overrode by invoking rpmbuild with -D 'macroname "macro value here"'.
 
 # Erigon version, buildable branch, & commit hash:
-%{!?erigon_ver: %global erigon_ver  2022.04.02}
-%{!?branch:     %global branch      stable}
-%{!?commit:     %global commit      d139c750cba2d9ce03e4677d6700b21246c6813f}
+%{!?erigon_ver: %global erigon_ver  2022.06.02}
+%{!?branch:     %global branch      alpha}
+%{!?commit:     %global commit      fd0837d962987636649b5a2a5090601f3410d632}
 # Supplementary files version:
 %{!?suppl_ver:  %global suppl_ver   0.1.2}
 
@@ -25,7 +25,7 @@ Source0:        https://github.com/%{vendor}/%{name}/archive/refs/tags/v%{versio
 Source1:        https://github.com/kaiwetlesen/%{name}-release/archive/refs/tags/v%{suppl_ver}.tar.gz
 
 BuildRequires: libmdbx-devel, binutils, git, golang-github-cpuguy83-md2man
-BuildRequires: golang >= 1.16
+BuildRequires: golang >= 1.18
 %if "%{dist}" == ".el8"
 BuildRequires: gcc-toolset-10-gcc
 BuildRequires: gcc-toolset-10-gcc-c++
@@ -106,6 +106,9 @@ fi
 
 
 %changelog
+* Sat Jun 11 2022 Artem Vorotnikov <artem@vorotnikov.me> - 2022.06.02-0%{?dist}
+- New upstream release
+
 * Mon Mar 28 2022 Kai Wetlesen <kaiw@semiotic.ai> - 2022.04.02-0%{?dist}
 - Fix for erroneous assert in MDBX
 - Change of skip analysis optimisation parameter
