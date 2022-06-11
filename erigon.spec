@@ -13,16 +13,15 @@
 %{!?suppl_ver:  %global suppl_ver   0.1.2}
 
 Name:           erigon
-Vendor:         Ledgerwatch
 Version:        %{erigon_ver}
 Release:        1%{?dist}
-Summary:        A very efficient Ethereum client
+Summary:        Ethereum implementation on the efficiency frontier
 License:        LGPLv3
 URL:            https://github.com/ledgerwatch/erigon
 
 # File sources:
-Source0:        https://github.com/%{vendor}/%{name}/archive/refs/tags/v%{version}.tar.gz
-Source1:        https://github.com/kaiwetlesen/%{name}-release/archive/refs/tags/v%{suppl_ver}.tar.gz
+Source0:        https://github.com/ledgerwatch/%{name}/archive/refs/tags/v%{version}.tar.gz
+Source1:        https://github.com/vorot93/%{name}-copr/archive/refs/tags/v%{suppl_ver}.tar.gz
 
 BuildRequires: libmdbx-devel, binutils, git, golang-github-cpuguy83-md2man
 BuildRequires: golang >= 1.18
