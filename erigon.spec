@@ -55,7 +55,16 @@ fi
 export GIT_BRANCH="%{branch}"
 export GIT_COMMIT="%{commit}"
 export GIT_TAG="v%{version}"
-make %{name} rpcdaemon integration sentry txpool hack pics
+export PACKAGE="github.com/ledgerwatch/erigon"
+# Build binaries
+mkdir -p ./build/bin
+cd cmd
+for binary in erigon downloader hack integration rpcdaemon sentry txpool; do
+    cd $binary
+    go build -trimpath -buildvcs=false -ldflags "-X ${PACKAGE}/params.GitCommit=${GIT_COMMIT} -X ${PACKAGE}/params.GitBranch=${GIT_BRANCH} -X ${PACKAGE}/params.GitTag=${GIT_TAG}" -o ../../build/bin/$binary
+    cd ..
+done
+cd ..
 echo '# "%{name}" 1 "%{summary}" %{vendor} "User Manuals"' > erigon.1.md
 cat erigon.1.md README.md | go-md2man > %{name}.1
 %{__gzip} %{name}.1
